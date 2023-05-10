@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "433803612970",
+    "project_id": "tracker-26fcc",
+    "storage_bucket": "tracker-26fcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433803612970:android:02c3d0db9f432094290453",
+        "android_client_info": {
+          "package_name": "com.trackerappbeta.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433803612970-jvi8c1s9oggmbfp5vq5l41mrhqvtcoif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX0HtMnRdDq6hUpE7iiexmaMAEfbHiA_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433803612970-jvi8c1s9oggmbfp5vq5l41mrhqvtcoif.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "433803612970-f4kn985gm8i5n93bvba3bg6j94dqrvum.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.trackerappbeta.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
