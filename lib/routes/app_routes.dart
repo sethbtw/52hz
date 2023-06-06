@@ -43,7 +43,7 @@ class AppRoutes {
     successfulRegScreen: (context) => SuccessfulRegScreen(),
     loadingScreen: (context) => LoadingScreen(),
     welcomeScreen: (context) => WelcomeScreen(),
-    calendarMainScreen: (context) => CalendarMainScreen(),
+    calendarMainScreen: (context) => Calendar(),
     addScreen: (context) => AddScreen(),
     statScreen: (context) => StatScreen(),
     lkScreen: (context) => LkScreen(),

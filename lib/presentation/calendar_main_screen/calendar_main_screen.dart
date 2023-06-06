@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:tracker_app_beta/core/app_export.dart';
 import 'package:tracker_app_beta/widgets/custom_button.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
+import 'package:table_calendar/table_calendar.dart';
+//import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 
-class CalendarMainScreen extends StatelessWidget {
+class Calendar extends StatefulWidget {
+  @override
+  _CalendarState createState() => _CalendarState();
+}
+
+class _CalendarState extends State<Calendar> {
+  
+  //Map<DateTime, List<Event>> selectedEvents;
+  CalendarFormat format = CalendarFormat.month;
+  DateTime selectedDay = DateTime.now();
+  DateTime focusedDay = DateTime.now();
+
+  //TextEditingController _eventController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,21 +46,95 @@ class CalendarMainScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: [ 
                           Align(
                               alignment: Alignment.centerLeft,
-                              child: Padding(
-                                  padding: getPadding(top: 34),
-                                  child: Text("Календарь",
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.left,
-                                      style:
-                                          AppStyle.txtMontserratRomanBold18))),
-                          CustomImageView(
-                              imagePath: ImageConstant.imgStar21,
-                              height: getVerticalSize(34),
-                              width: getHorizontalSize(33),
-                              margin: getMargin(top: 21, right: 35)),
+                              child: Container(
+                                width: getHorizontalSize(287),
+                                margin:
+                                    getMargin(top: 20, right: 20),
+                                child: Text("Календарь",
+                                  maxLines: null,
+                                  textAlign: TextAlign.left,
+                                  style: AppStyle.txtMontserratRomanBold18))),                       
+                          TableCalendar(
+                            locale: 'ru_RU',
+                            focusedDay: selectedDay,
+                            firstDay: DateTime(2023),
+                            lastDay: DateTime(2050),
+                            calendarFormat: format,
+                            onFormatChanged: (CalendarFormat _format) {
+                              setState(() {
+                                format = _format;
+                              });
+                            },
+                            startingDayOfWeek: StartingDayOfWeek.monday,
+                            daysOfWeekVisible: true,
+
+                            //Day Changed
+                            onDaySelected: (DateTime selectDay, DateTime focusDay) {
+                              setState(() {
+                                selectedDay = selectDay;
+                                focusedDay = focusDay;
+                              });
+                              print(focusedDay);
+                            },
+                            selectedDayPredicate: (DateTime date) {
+                              return isSameDay(selectedDay, date);
+                            },
+
+                            //eventLoader: _getEventsfromDay,
+
+                            //To style the Calendar
+                            calendarStyle: CalendarStyle(
+                              isTodayHighlighted: true,
+                              selectedDecoration: BoxDecoration(
+                                //color: Color(0xffF885AB),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white)
+                              ),
+                              selectedTextStyle: TextStyle(color: Colors.white),
+                              todayDecoration: BoxDecoration(
+                                //color: Color(0xffF885AB), //выбираемый цвет
+                                shape: BoxShape.circle,
+                                //border: Border.all(color: Colors.white)
+                              
+                              ),
+                              defaultDecoration: BoxDecoration(
+                              shape: BoxShape.circle
+                           
+                              ),
+                              weekendDecoration: BoxDecoration(
+                              shape: BoxShape.circle
+                            
+                              ),
+                            ),
+                            headerStyle: HeaderStyle(
+                              formatButtonVisible: false,
+                              titleCentered: true,
+                              titleTextStyle: AppStyle.txtMontserratRomanBold18, 
+                            ),
+                          ),
+                          //..._getEventsfromDay(selectedDay).map(
+                            //(Event event) => ListTile(
+                              //title: Text(
+                                //event.title,
+                              //),
+                            //),
+                          //),
+                          CustomButton(
+                            height: getVerticalSize(42),
+                            width: getHorizontalSize(159),
+                            text: "ЗАПИСЬ",
+                            margin: getMargin(top: 15),
+                            variant:
+                              ButtonVariant.FillOrange300,
+                              fontStyle: ButtonFontStyle
+                                .MontserratRomanMedium15WhiteA700,
+                              onTap: () {
+                                onTaptf(context);
+                              }),                          
+                          
                           Spacer(),
                           Align(
                               alignment: Alignment.center,
@@ -63,36 +151,17 @@ class CalendarMainScreen extends StatelessWidget {
                                             height: getVerticalSize(34),
                                             width: getHorizontalSize(33),
                                             margin: getMargin(bottom: 21)),
-                                        CustomButton(
-                                            height: getVerticalSize(42),
-                                            width: getHorizontalSize(159),
-                                            text: "ЗАПИСЬ",
-                                            margin: getMargin(top: 13),
-                                            variant:
-                                                ButtonVariant.FillOrange300,
-                                            fontStyle: ButtonFontStyle
-                                                .MontserratRomanMedium15WhiteA700,
-                                            onTap: () {
-                                              onTaptf(context);
-                                            })
+                                        
+                                        
                                       ]))),
-                          CustomImageView(
-                              imagePath: ImageConstant.imgStar3,
-                              height: getVerticalSize(34),
-                              width: getHorizontalSize(33),
-                              margin: getMargin(top: 71, right: 20)),
-                          Container(
-                              height: getVerticalSize(62),
-                              width: getHorizontalSize(298),
-                              margin: getMargin(top: 186, right: 5),
-                              decoration: BoxDecoration(
-                                  color: ColorConstant.orange300,
-                                  borderRadius: BorderRadius.circular(
-                                      getHorizontalSize(31))))
+                         
+                         
+                        
                         ]))),
-                        bottomNavigationBar:  DotNavigationBar(
+                        //bottomNavigationBar:  DotNavigationBar(
+                          
 
-                        )
+                        //)
                       ));
   }
 

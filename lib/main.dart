@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tracker_app_beta/routes/app_routes.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async { 
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,6 +10,7 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  initializeDateFormatting().then((_) => runApp(MyApp()));
   runApp(MyApp());
 }
 

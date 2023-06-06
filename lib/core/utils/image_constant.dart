@@ -18,4 +18,8 @@ class ImageConstant {
   static String imgStar3 = 'assets/images/img_star3.png';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  static String imgHappy1 = 'assets/images/img_happy1.png';
+
+  static String imgSad1 = 'assets/images/img_sad1.png';
 }
